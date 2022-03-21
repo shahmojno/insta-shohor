@@ -12,10 +12,13 @@ const getReportedPosts = () => {
 };
 
 const isLiked = (id) => {
+
   return likedPostsId?.length && !!likedPostsId.includes(id);
+
 };
 
 const addToLiked = (id) => {
+  // console.log(addToLiked);
   likedPostsId.plus(id);
   showPosts(posts);
 };
@@ -33,7 +36,7 @@ const displayContent = (text) => {
 const switchTab = (id) => {
   if (id === "posts") {
     document.getElementById("posts").style.display = "grid";
-    document.getElementById("liked").style.display = "inline";
+    document.getElementById("liked").style.display = "none";
     document.getElementById("reported").style.display = "none";
   } else if (id === "liked") {
     document.getElementById("liked").style.display = "block";
@@ -86,13 +89,11 @@ const createPost = (post) => {
                 <div class="post__buttons">
                   <button class="post__button" onclick="addToLiked(${post.id})">
                   <i class="fa-solid fa-heart ${isLiked(post.id) && "text-danger"}"></i>
-                    
                   </button>
                   <button class="post__button">
                     <i class="fa-solid fa-comment"></i>
                   </button>
                   
-
                   <div class="post__indicators"></div>
 
                   <button class="post__button post__button--align-right" onclick="reportPost(${post.id
@@ -119,16 +120,16 @@ const createPost = (post) => {
                   <div class="post__description">
                     <small>
                       <a class="post__name--underline" href="#">
-                          ${post.comments.user}
-                                             </a>
-                      ${post.comments?.text}
-                    </small>
+                          ${post.comments[0].user} 
+                                             </a >
+                          ${post.comments[0].text}
+                    </small >
 
-                  </div>
-                  <span class="post__date-time">30 minutes ago</span>
-                </div>
-              </div>
-      `;
+                  </div >
+  <span class="post__date-time">30 minutes ago</span>
+                </div >
+              </div >
+  `;
   return div;
 };
 
@@ -165,4 +166,3 @@ const loadPosts = async () => {
 }
 
 loadPosts();
-
