@@ -12,8 +12,8 @@ const getReportedPosts = () => {
 };
 
 const isLiked = (id) => {
-
-  return likedPostsId?.length && !!likedPostsId.includes(id);
+  if (id === id)
+    return likedPostsId?.length && !!likedPostsId.includes(id);
 
 };
 
